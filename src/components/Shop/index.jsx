@@ -4,7 +4,7 @@ import Loader from "../Loader";
 import List from "../../UI/List";
 import "./Shop.scss";
 
-const index = () => {
+const index = ({ addToBasket }) => {
   const [product, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -28,7 +28,7 @@ const index = () => {
           {loading ? (
             <Loader />
           ) : (
-            <List product={product} />
+            <List product={product} addToBasket={addToBasket} />
           )}
         </div>
       </div>

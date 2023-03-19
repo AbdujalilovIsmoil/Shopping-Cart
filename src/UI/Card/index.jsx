@@ -1,6 +1,13 @@
 import { useState } from "react";
 
-const index = ({ name, description, price, full_background, id }) => {
+const index = ({
+  name,
+  description,
+  price,
+  full_background,
+  id,
+  addToBasket
+}) => {
   return (
     <>
       <div className="card my-3">
@@ -13,7 +20,11 @@ const index = ({ name, description, price, full_background, id }) => {
             {description}
           </p>
           <div className="box d-flex justify-content-between align-items-center">
-            <a href="#!" className="btn btn-primary">
+            <a
+              href="#!"
+              className="btn btn-primary"
+              onClick={() => addToBasket({ name, price, id, description })}
+            >
               Buy
             </a>
             <h5 className="my-3">{price}$</h5>
