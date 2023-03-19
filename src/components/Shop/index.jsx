@@ -25,7 +25,11 @@ const index = () => {
     <>
       <div className="shop my-4">
         <div className="container">
-          {loading ? <Loader /> : <List product={product} />}
+          {loading ? (
+            <Loader />
+          ) : (
+            <List product={product} />
+          )}
         </div>
       </div>
     </>
