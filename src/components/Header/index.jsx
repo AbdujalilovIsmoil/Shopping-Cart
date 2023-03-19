@@ -3,7 +3,7 @@ import React from "react";
 const index = () => {
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top z-index-1 top-0">
         <div className="container">
           <a className="navbar-brand mt-2 mt-lg-0" href="#">
             React Shop
