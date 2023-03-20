@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { Header, Footer, Shop } from "./components";
+import { Header, Footer, Shop, Modal } from "./components";
 
 const App = () => {
   const [order, setOrder] = useState([]);
 
-  const addToBasket = (item) => {
-    const findScore = order.findIndex((el) => el.id === item.id);
+  const addToBasket = (items) => {
+    const findScore = order.findIndex((el) => el.id === items.id);
 
     if (findScore < 0) {
-      const newObject = {
-        ...item,
+      const newItem = {
+        ...items,
         quantity: 1
       };
-      setOrder([...order, newObject]);
+      setOrder([...order, newItem]);
     } else {
       const newOrder = order.map((el, index) => {
         if (index === findScore) {
@@ -28,9 +28,16 @@ const App = () => {
     }
   };
 
+  const removeBasket = (id) => {
+    const filtered = order.filter(el => el.id !== id);
+    setOrder(filtered);
+  }
+
+
   return (
     <>
       <Header order={order} />
+      <Modal order={order} removeBasket={removeBasket}/>
       <Shop addToBasket={addToBasket} />
       <Footer />
     </>
