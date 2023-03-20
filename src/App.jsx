@@ -29,15 +29,49 @@ const App = () => {
   };
 
   const removeBasket = (id) => {
-    const filtered = order.filter(el => el.id !== id);
+    const filtered = order.filter((el) => el.id !== id);
     setOrder(filtered);
-  }
+  };
 
+  const incrementQuantity = (id) => {
+    const incrementData = order.map((el) => {
+      if (el.id === id) {
+        const incrQuantity = el.quantity + 1;
+        return {
+          ...el,
+          quantity: incrQuantity
+        };
+      } else {
+        return el;
+      }
+    });
+    setOrder(incrementData);
+  };
+
+  const decrementQuantity = (id) => {
+    const decrementData = order.map((el) => {
+      if (el.id === id) {
+        const decrQuantity = el.quantity - 1;
+        return {
+          ...el,
+          quantity: decrQuantity
+        };
+      } else {
+        return el;
+      }
+    });
+    setOrder(decrementData);
+  };
 
   return (
     <>
       <Header order={order} />
-      <Modal order={order} removeBasket={removeBasket}/>
+      <Modal
+        incrementQuantity={incrementQuantity}
+        decrementQuantity={decrementQuantity}
+        order={order}
+        removeBasket={removeBasket}
+      />
       <Shop addToBasket={addToBasket} />
       <Footer />
     </>
