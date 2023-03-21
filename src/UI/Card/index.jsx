@@ -23,7 +23,7 @@ const index = ({
             <a
               href="#!"
               className="btn btn-primary"
-              onClick={() => addToBasket({ name, price, id, description })}
+              onClick={() => addToBasket({ id, name, price })}
             >
               Buy
             </a>

@@ -28,7 +28,10 @@ const index = ({ addToBasket }) => {
           {loading ? (
             <Loader />
           ) : (
-            <List product={product} addToBasket={addToBasket} />
+            <List
+              product={product}
+              addToBasket={addToBasket}
+            />
           )}
         </div>
       </div>

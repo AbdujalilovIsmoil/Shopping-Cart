@@ -1,76 +1,82 @@
-import { useState } from "react";
+import React from "react";
 import "./Modal.scss";
 
 const index = ({
-  order,
+  product = [],
   removeBasket,
-  incrementQuantity,
-  decrementQuantity
+  incrementProduct,
+  decrementProduct,
+  open
 }) => {
-  const reduced = order.reduce((a, b) => {
-    return a + b.quantity * b.price;
+  const reduced = product.reduce((sum, b) => {
+    return sum + b.quantity * b.price;
   }, 0);
+
+  let classNames = "tables";
+
+  if (open) {
+    classNames += " open";
+  }
+
   return (
     <>
-      <div className="container">
-        <table className="table bg-light mt-5">
-          <thead>
-            <tr>
-              <th scope="col">№</th>
-              <th scope="col">Fullname</th>
-              <th scope="col">Price</th>
-              <th scope="col">Score</th>
-              <th scope="col">Delete</th>
-              <th scope="col">Plus</th>
-              <th scope="col">Minus</th>
-            </tr>
-          </thead>
-          <tbody>
-            {order.length ? (
-              order.map((el) => (
-                <tr>
-                  <th scope="row">{el.id}</th>
+      <div className={classNames}>
+        <div className="table-responsive responsive bg-light px-3 rounded-5">
+          <table className="table mt-5 table-hover bg-light">
+            <thead>
+              <tr>
+                <th>№</th>
+                <th>Fullname</th>
+                <th>Price</th>
+                <th>Score</th>
+                <th>Delete</th>
+                <th>Plus</th>
+                <th>Minus</th>
+              </tr>
+            </thead>
+            <tbody>
+              {product.map((el, index) => (
+                <tr key={el.id}>
+                  <th scope="row">{index + 1}</th>
                   <td>{el.name}</td>
-                  <td>{el.price * el.quantity}$</td>
+                  <td>{el.price * el.quantity}</td>
                   <td>{el.quantity}</td>
                   <td>
                     <button
-                      onClick={() => removeBasket(el.id)}
                       type="button"
                       className="btn btn-link btn-sm px-3"
                       data-ripple-color="dark"
+                      onClick={() => removeBasket(el.id)}
                     >
                       <i className="fas fa-trash text-danger fs-5"></i>
                     </button>
                   </td>
                   <td>
                     <button
-                      onClick={() => incrementQuantity(el.id)}
                       type="button"
                       className="btn btn-sm px-3 btn-success"
                       data-ripple-color="dark"
+                      onClick={() => incrementProduct(el.id)}
                     >
                       +
                     </button>
                   </td>
                   <td>
                     <button
-                      onClick={() => decrementQuantity(el.id)}
                       type="button"
                       className="btn btn-sm px-3 btn-danger"
                       data-ripple-color="dark"
+                      onClick={() => decrementProduct(el.id)}
                     >
                       -
                     </button>
                   </td>
                 </tr>
-              ))
-            ) : (
-              <h4 className="mt-4 ms-4">NOT FOUND</h4>
-            )}
-          </tbody>
-        </table>
-        <h5 className="mt-2">Total: {reduced}$</h5>
+              ))}
+            </tbody>
+          </table>
+          <h6 className="mt-2">Total: {reduced}$</h6>
+        </div>
       </div>
     </>
   );

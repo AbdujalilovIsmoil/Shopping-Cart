@@ -2,3 +2,39 @@ button {
   cursor: pointer !important;
   z-index: 1;
 }
+
+.tables {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  transition: all .3s linear;
+  z-index: 1;
+  overflow: hidden;
+  transform: scale(0);
+}
+
+.responsive {
+  width: 70%;
+  box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.4);
+  height: 300px;
+}
+
+.tables.open {
+  transform: scale(1);
+}
+
+@media only screen and (max-width: 900px) {
+  .responsive {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 790px) {
+  .responsive {
+    width: 90%;
+  }
+}
